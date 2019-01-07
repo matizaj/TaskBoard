@@ -15,12 +15,25 @@ export class HttpService {
     this.getTask();
    }
 
-  getTask() {
-    this.http.get(this.apiUrl, {params: this.param}).
-    subscribe(task => {
-      console.log(task);
+  getTask(): Observable<Array<Task>> {
+    return this.http.get<Array<Task>>(this.apiUrl, {params: this.param});
+  }
+
+  addTask(tasks: Array<Task>) {
+    this.http.put(this.apiUrl, tasks, {params: this.param}).
+    subscribe( data => {
+      console.log(data);
     }, error => {
-      console.log('failed to get task');
+      console.log('failed with post method' + error);
     });
   }
+
+  // removeTask(id: {}) {
+  //   this.http.delete(this.apiUrl + '/' + id, {params: this.param}).
+  //   subscribe( data => {
+  //     console.log(data);
+  //   }, error => {
+  //     console.log('failed with delete' + error);
+  //   });
+  // }
 }

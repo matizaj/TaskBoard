@@ -21,6 +21,7 @@ export class TodoTaskComponent implements OnInit {
 
   remove(task: Task) {
     this.taskService.remove(task);
+    // this.taskService.removeTaskFromDb(task._id.$oid);
   }
   done(task: Task) {
     this.taskService.done(task);

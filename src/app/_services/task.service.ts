@@ -11,13 +11,16 @@ export class TaskService {
   private taskListObs = new BehaviorSubject<Array<Task>>([]);
 
   constructor(private httpService: HttpService) {
-    const taskList = [
-      {name: 'Angular 6', created: new Date().toLocaleString(), isDone: false},
-      {name: '.net', created: new Date().toLocaleString(), isDone: false},
-      {name: 'wspinanie', created: new Date().toLocaleString(), isDone: false},
-      {name: 'jedzenie', created: new Date().toLocaleString(), end: '06.01.2019', isDone: true}
-    ];
-    this.taskListObs.next(taskList);
+    // const taskList = [
+    //   {name: 'Angular 6', created: new Date().toLocaleString(), isDone: false},
+    //   {name: '.net', created: new Date().toLocaleString(), isDone: false},
+    //   {name: 'wspinanie', created: new Date().toLocaleString(), isDone: false},
+    //   {name: 'jedzenie', created: new Date().toLocaleString(), end: '06.01.2019', isDone: true}
+    // ];
+    // this.taskListObs.next(taskList);
+    this.httpService.getTask().subscribe(tasks => {
+      this.taskListObs.next(tasks);
+    });
   }
 
   addTask(task: Task) {
@@ -44,5 +47,13 @@ export class TaskService {
   getTaskList(): Observable<Array<Task>> {
     return this.taskListObs.asObservable();
   }
+
+  saveTasksinDb() {
+    this.httpService.addTask(this.taskListObs.getValue());
+  }
+
+  // removeTaskFromDb(id) {
+  //   this.httpService.removeTask(this.taskListObs.getValue().filter(t => t._id.$oid === id));
+  // }
 
 }
