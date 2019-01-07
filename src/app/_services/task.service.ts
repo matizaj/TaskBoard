@@ -23,9 +23,8 @@ export class TaskService {
     });
   }
 
-  addTask(task: Task) {
-    const list = this.taskListObs.getValue();
-    list.push(task);
+  add(task: Array<Task>) {
+    const list = this.taskListObs.getValue().concat(task);
     this.taskListObs.next(list);
   }
 
@@ -44,7 +43,7 @@ export class TaskService {
     // this.doneListObs.next(this.doneTask);
   }
 
-  getTaskList(): Observable<Array<Task>> {
+  getTaskListObs(): Observable<Array<Task>> {
     return this.taskListObs.asObservable();
   }
 

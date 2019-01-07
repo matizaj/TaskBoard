@@ -10,7 +10,7 @@ import { Task } from '../models/task';
 export class DoneTaskComponent implements OnInit {
   doneTask: Array<Task> = [];
   constructor(private taskService: TaskService) {
-    this.taskService.getTaskList().subscribe( task => {
+    this.taskService.getTaskListObs().subscribe( task => {
       this.doneTask = task.filter( t => t.isDone === true);
     });
   }

@@ -9,9 +9,9 @@ import { Task } from '../models/task';
 })
 export class TodoTaskComponent implements OnInit {
 
-  @Input() taskList: Array<Task> = [];
+  taskList: Array<Task> = [];
   constructor(private taskService: TaskService) {
-    this.taskService.getTaskList().subscribe( task => {
+    this.taskService.getTaskListObs().subscribe( task => {
       this.taskList = task.filter(t => t.isDone === false);
     });
   }
@@ -24,6 +24,7 @@ export class TodoTaskComponent implements OnInit {
     // this.taskService.removeTaskFromDb(task._id.$oid);
   }
   done(task: Task) {
+    task.end = new Date().toLocaleString();
     this.taskService.done(task);
   }
   saveTasks() {
