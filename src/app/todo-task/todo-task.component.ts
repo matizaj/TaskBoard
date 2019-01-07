@@ -26,5 +26,8 @@ export class TodoTaskComponent implements OnInit {
   done(task: Task) {
     this.taskService.done(task);
   }
+  saveTasks() {
+    this.taskService.saveTasksinDb();
+  }
 
 }

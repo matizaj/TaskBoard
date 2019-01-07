@@ -10,11 +10,5 @@ import { TaskService } from './_services/task.service';
 })
 export class AppComponent {
   title = 'Task Board';
-  constructor(private taskService: TaskService) {
-
   }
 
-  saveTasks() {
-    this.taskService.saveTasksinDb();
-  }
-}

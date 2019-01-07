@@ -9,6 +9,7 @@ import { TodoTaskComponent } from './todo-task/todo-task.component';
 import { DoneTaskComponent } from './done-task/done-task.component';
 import { TaskService } from './_services/task.service';
 import { HttpService } from './_services/http.service';
+import { RoutingModule } from './routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpService } from './_services/http.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RoutingModule
   ],
   providers: [TaskService, HttpService],
   bootstrap: [AppComponent]
