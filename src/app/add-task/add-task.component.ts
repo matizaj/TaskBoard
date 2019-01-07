@@ -43,13 +43,19 @@ import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
    constructor(private taskService: TaskService) { }
 
    ngOnInit() {
-   this.addForm = new FormGroup({
-       taskName: new FormArray([new FormControl(null, Validators.required)])
-     });
+    this.addForm = this.initForm();
    }
+
+initForm() {
+  return new FormGroup({
+    taskName: new FormArray([new FormControl(null, Validators.required)])
+  });
+}
+
    addTask() {
      const taskList = this.createTaskList();
      this.taskService.add(taskList);
+     this.addForm = this.initForm();
   }
    addField() {
      const arr = <FormArray>this.addForm.get('taskName');
