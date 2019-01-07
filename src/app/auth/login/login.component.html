@@ -1,0 +1,13 @@
+<div class="container">
+  <form (ngSubmit)="login(formData)" #formData='ngForm'>
+    <div class="login">
+      <label>Email</label>
+      <input ngModel type="email" name="email" required>
+      <label>Password</label>
+      <input ngModel type="password" name="password" required>
+      <button class="btn btn-primary" type="submit" [disabled]="formData.invalid">Login</button>
+      <button class="btn btn-success" type="button"
+      [disabled]="formData.invalid" (click)="signup(formData)">Sign Up</button>
+    </div>
+  </form>
+</div>

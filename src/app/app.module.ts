@@ -10,22 +10,39 @@ import { DoneTaskComponent } from './done-task/done-task.component';
 import { TaskService } from './_services/task.service';
 import { HttpService } from './_services/http.service';
 import { RoutingModule } from './routing.module';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './_services/auth.service';
+import { GuardService } from './_services/guard.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+const config = {
+  apiKey: 'AIzaSyCAWZM9v6uRhJOnYETTR06rwHjxPFGGtzA',
+  authDomain: 'taskboard-a04c2.firebaseapp.com',
+  databaseURL: 'https://taskboard-a04c2.firebaseio.com',
+  projectId: 'taskboard-a04c2',
+  storageBucket: 'taskboard-a04c2.appspot.com',
+  messagingSenderId: '744578893039'
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
     TodoTaskComponent,
-    DoneTaskComponent
+    DoneTaskComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
-  providers: [TaskService, HttpService],
+  providers: [TaskService, HttpService, AuthService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
